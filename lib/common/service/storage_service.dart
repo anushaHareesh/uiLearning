@@ -17,7 +17,5 @@ class StorageService {
     return _prefs!.getBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME)?? false;
   }
 }
-
-{
-  
-}
+..
+..
