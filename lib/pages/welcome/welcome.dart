@@ -25,7 +25,7 @@ class _WelcomeState extends State<Welcome> {
         builder: (context, state) {
           return Container(
             margin: EdgeInsets.only(top: 41.h),
-            width: 375.w,
+            width: double.infinity,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -57,7 +57,7 @@ class _WelcomeState extends State<Welcome> {
                   ],
                 ),
                 Positioned(
-                    bottom: 70.h,
+                    bottom: 20.h,
                     child: DotsIndicator(
                       position: state.page,
                       dotsCount: 3,
@@ -78,7 +78,7 @@ class _WelcomeState extends State<Welcome> {
       children: [
         SizedBox(
             width: 345.w,
-            height: 345.w,
+            height: 345.h,
             child: Image.asset(
               image,
               fit: BoxFit.cover,
