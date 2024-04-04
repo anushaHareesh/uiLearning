@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ulearning/common/service/storage_service.dart';
+import 'package:ulearning/common/values/constants.dart';
 import 'package:ulearning/common/widgets/flutter_toast.dart';
 import 'package:ulearning/pages/sign_in/bloc/signin_bloc.dart';
 
@@ -14,8 +16,8 @@ class SigninController {
       if (type == "email") {
         final state = BlocProvider.of<SigninBloc>(context).state;
 
-        final emailAdd = state.email;
-        final paswd = state.password;
+        final emailAdd = state.email.trim();
+        final paswd = state.password.trim();
         print("email-values----$emailAdd----$paswd");
 
         if (emailAdd.isEmpty||paswd.isEmpty) {
@@ -37,6 +39,7 @@ class SigninController {
           var user = credential.user;
           if (user != null) {
             toastFlutter(msg: "user exist");
+            StorageService().setString(AppConstants.STORAGE_USER_KEY, "123456");
             Navigator.pushNamed(context, "application");
           } else {
             toastFlutter(msg: "user not exist");
