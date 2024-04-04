@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: ScreenUtilInit(
+        designSize: Size(360, 690),
         builder: (context, child) => MaterialApp(
           // initialRoute: "/",
           // routes: routes,
@@ -63,7 +64,9 @@ class MyApp extends StatelessWidget {
             "application": (context) => ApplicationPage(),
           },
           home: StorageService().getDeviceFirstOpen()!
-              ? Signin()
+              ? StorageService().isLoggedIn()!
+                  ? ApplicationPage()
+                  : Signin()
               : Welcome(),
         ),
       ),
