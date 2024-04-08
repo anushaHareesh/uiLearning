@@ -7,6 +7,7 @@ import 'package:ulearning/common/routes/routes.dart';
 import 'package:ulearning/common/service/storage_service.dart';
 import 'package:ulearning/pages/application/application_page.dart';
 import 'package:ulearning/pages/application/bloc/application_blocs.dart';
+import 'package:ulearning/pages/home/bloc/home_page_bloc.dart';
 import 'package:ulearning/pages/register/bloc/register_bloc.dart';
 import 'package:ulearning/pages/register/register.dart';
 import 'package:ulearning/pages/sign_in/bloc/signin_bloc.dart';
@@ -50,10 +51,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           lazy: false,
           create: (context) => ApplicationBlocs(),
+        ),
+        BlocProvider(
+          lazy: false,
+          create: (context) => HomepageBloc(),
         )
       ],
       child: ScreenUtilInit(
-        designSize: Size(360, 690),
+        designSize: Size(375,812),
         builder: (context, child) => MaterialApp(
           // initialRoute: "/",
           // routes: routes,
@@ -63,6 +68,7 @@ class MyApp extends StatelessWidget {
             "register": (context) => Register(),
             "application": (context) => ApplicationPage(),
           },
+          // home: Welcome(),
           home: StorageService().getDeviceFirstOpen()!
               ? StorageService().isLoggedIn()!
                   ? ApplicationPage()
